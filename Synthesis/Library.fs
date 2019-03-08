@@ -1,28 +1,49 @@
 ﻿module Synthesis
 
-let abelar _ =
-    failwith "Not implemented"
+open System.ComponentModel.Design
 
-let area _ _ =
-    failwith "Not implemented"
+let abelar a =
+     a>12 && a<3097 && (a%12)=0
 
-let zollo _ =
-    failwith "Not implemented"
+let area b h =
+    match (b<0.0),(h<0.0) with
+    |true,_ |_,true -> failwith "theQueen"
+    |_,_ -> (b+h)/2.0
+    
 
-let min _ _ =
-    failwith "Not implemented"
+let zollo n =
+    match n>0 with
+    |true -> n*2
+    |false -> -1*n
 
-let max _ _ =
-    failwith "Not implemented"
+let min p q =
+    match p>q with 
+    |true -> q
+    |false -> p
 
-let ofTime _ _ _ =
-    failwith "Not implemented"
+let max p q =
+    match p>q with 
+    |true -> p
+    |false -> q
 
-let toTime _ =
-    failwith "Not implemented"
+let ofTime h m s =
+    (h*60*60) + (m*60) + s
 
-let digits _ =
-    failwith "Not implemented"
+let toTime s =
+    match s>0 with
+    |false -> 0,0,0
+    |true -> let h = s/60/60
+             let m = ((s-(h*60*60))/60)
+             let sec = s-(h*60*60)-(m*60)
+             h,m,sec
+             
+
+let digits n =
+    let rec cnt v acc = 
+        match v>=(-9) && v<=9 with
+        |true -> acc+1
+        |false -> cnt (v/10) (acc+1)
+    cnt n 0
 
 let minmax _ =
     failwith "Not implemented"
