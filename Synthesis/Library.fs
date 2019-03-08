@@ -8,7 +8,7 @@ let abelar a =
 let area b h =
     match (b<0.0),(h<0.0) with
     |true,_ |_,true -> failwith "theQueen"
-    |_,_ -> (b+h)/2.0
+    |_,_ -> (b*h)/2.0
     
 
 let zollo n =
@@ -48,14 +48,41 @@ let digits n =
 let minmax _ =
     failwith "Not implemented"
 
-let isLeap _ =
-    failwith "Not implemented"
+let isLeap yr =
+    match (yr>=1582), (yr%4=0), (yr%100=0), (yr%400=0) with
+    |false,_,_,_ -> failwith "theQueen"
+    |_,true,true,true |_,true,false,false -> true
+    |_,true,true,false -> false
+    |_ -> false
 
-let month _ =
-    failwith "Not implemented"
+    
 
-let toBinary _ =
-    failwith "Not implemented"
+let month i =
+    match (i<=0),(i>12),i with
+    |true,_,_ |_,true,_ -> failwith "theQueen"
+    |_,_,1 -> "January", 31
+    |_,_,2 -> "February", 28
+    |_,_,3 -> "March", 31
+    |_,_,4 -> "April", 30
+    |_,_,5 -> "May", 31
+    |_,_,6 -> "June", 30
+    |_,_,7 -> "July", 31
+    |_,_,8 -> "August", 31
+    |_,_,9 -> "September", 30
+    |_,_,10 -> "October", 31
+    |_,_,11 -> "November", 30
+    |_,_,12 -> "December", 31
+
+let toBinary d =
+    match d<0 with
+    |true -> failwith "theQueen"
+    |false -> let rec toBinary d rem =
+               match d/2,d%2 with
+               |0,0 -> "0" + rem
+               |0,1 -> "1" + rem
+               |nd,0 -> toBinary nd ("0" + rem)
+               |nd,1 -> toBinary nd ("1" + rem)
+              toBinary d ""
 
 let bizFuzz _ =
     failwith "Not implemented"
