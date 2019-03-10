@@ -45,8 +45,10 @@ let digits n =
         |false -> cnt (v/10) (acc+1)
     cnt n 0
 
-let minmax _ =
-    failwith "Not implemented"
+let minmax (a,s,d,f) =
+    let ma = max (max a s) (max d f)
+    let mi = min (min a s) (min d f)
+    mi,ma
 
 let isLeap yr =
     match (yr>=1582), (yr%4=0), (yr%100=0), (yr%400=0) with
